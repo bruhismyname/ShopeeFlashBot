@@ -1,0 +1,21 @@
+# Core dependencies
+selenium==4.15.2
+undetected-chromedriver==3.5.4
+
+# SaaS API dependencies
+fastapi==0.109.1
+uvicorn[standard]==0.24.0
+pydantic[email]==2.5.0
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.18
+
+# Background tasks
+celery==5.3.4
+redis==5.0.1
+
+# Email
+aiosmtplib==3.0.1
+
+# Utilities
+python-dotenv==1.0.0
