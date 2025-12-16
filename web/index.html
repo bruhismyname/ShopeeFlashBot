@@ -302,7 +302,7 @@
             <h3>3. Create Bot Task</h3>
             <div class="code-block">
                 <code>curl -X POST http://localhost:8000/api/v1/tasks \
-  -H "Authorization: Bearer &lt;your-token&gt;" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"name":"Flash Sale","url":"https://shopee.co.id/...","target_time":"00:00:00"}'</code>
             </div>
@@ -310,7 +310,7 @@
             <h3>4. Run Task</h3>
             <div class="code-block">
                 <code>curl -X POST http://localhost:8000/api/v1/tasks/1/run \
-  -H "Authorization: Bearer &lt;your-token&gt;"</code>
+  -H "Authorization: Bearer YOUR_TOKEN"</code>
             </div>
         </div>
     </div>

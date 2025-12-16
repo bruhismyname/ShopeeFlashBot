@@ -81,20 +81,21 @@ class BotService:
                     logger.warning(f"Product option button not found: {config['product_option']}")
             
             # Click buy with voucher or buy now
+            # Note: Button text and selectors are Shopee-specific and may need localization
             try:
-                if config.get("use_voucher", False):
-                    button = WebDriverWait(driver, 10).until(
-                        EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Beli Dengan Voucher')]"))
-                    )
-                    button.click()
-                    result["steps_completed"].append("buy_with_voucher_clicked")
-                else:
-                    button = WebDriverWait(driver, 10).until(
-                        EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'beli sekarang')]"))
-                    )
-                    button.click()
-                    result["steps_completed"].append("buy_now_clicked")
+                buy_button_xpath = config.get("buy_button_xpath")
+                if not buy_button_xpath:
+                    # Default selectors for Indonesian Shopee site
+                    if config.get("use_voucher", False):
+                        buy_button_xpath = "//button[contains(text(), 'Beli Dengan Voucher')]"
+                    else:
+                        buy_button_xpath = "//button[contains(text(), 'beli sekarang')]"
                 
+                button = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, buy_button_xpath))
+                )
+                button.click()
+                result["steps_completed"].append("buy_button_clicked")
                 logger.info("Buy button clicked")
             except TimeoutException:
                 raise Exception("Buy button not found")
